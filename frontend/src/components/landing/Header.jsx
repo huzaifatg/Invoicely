@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FileText, Menu, X } from "lucide-react";
-import ProfileDropdown from "../layout/ProfileDropDown";
+import ProfileDropdown from "../layout/ProfileDropdown";
 import Button from "../ui/Button";
 import { useAuth } from "../../context/AuthContext";
 
