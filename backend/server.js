@@ -10,14 +10,16 @@ const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
 
-//middleware to handle cors
-app.use(
-    cors({
-        origin: "*",
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ["Content-Type", "Authorization"],
-    })
-);
+//middleware to handle cors - only in development
+if (process.env.NODE_ENV !== "production") {
+    app.use(
+        cors({
+            origin: "http://localhost:5173",
+            methods: ["GET", "POST", "PUT", "DELETE"],
+            allowedHeaders: ["Content-Type", "Authorization"],
+        })
+    );
+}
 
 //connect db
 connectDB();
@@ -30,6 +32,20 @@ app.use("/api/auth", authRoutes);
 app.use("/api/invoices", invoiceRoutes);
 app.use("/api/ai", aiRoutes);
 
+//serve static files in production
+if (process.env.NODE_ENV === "production") {
+    const staticPath = path.join(__dirname, "../frontend/dist");
+    app.use(express.static(staticPath));
+    
+    // Handle React Router - send index.html for all non-API routes
+    app.use((req, res, next) => {
+        if (!req.path.startsWith('/api')) {
+            res.sendFile(path.join(staticPath, "index.html"));
+        } else {
+            next();
+        }
+    });
+}
 
 //start server
 const PORT = process.env.PORT || 5000;

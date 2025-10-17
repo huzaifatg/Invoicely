@@ -1,0 +1,22 @@
+{
+  "name": "invoicely",
+  "version": "1.0.0",
+  "description": "**Invoicely** is a full-stack, AI-powered invoice management web application built to simplify and automate the invoicing process for freelancers, entrepreneurs, and small-to-medium businesses. It combines modern design, real-time analytics, and smart AI assistance to deliver a complete business invoicing experience.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huzaifatg/Invoicely.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/huzaifatg/Invoicely/issues"
+  },
+  "homepage": "https://github.com/huzaifatg/Invoicely#readme"
+}
